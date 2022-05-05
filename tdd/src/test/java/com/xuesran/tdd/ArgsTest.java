@@ -1,5 +1,6 @@
 package com.xuesran.tdd;
 
+import com.xuesran.tdd.chapter01.Args;
 import com.xuesran.tdd.chapter01.Option;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
@@ -18,6 +19,16 @@ public class ArgsTest {
     // {-l:[], -p:[8080], -d:[/usr/logs]}
     // Single Options
     // TODO: -Bool -l
+    @Test
+    public void should_set_boolean_option_true_if_flag_present(){
+        BooleanOption option = Args.parse(BooleanOption.class, "-l");
+        assertTrue(option.logging());
+    }
+
+    static record BooleanOption(@Option("l") boolean logging){
+        
+    }
+
     // TODO: -Integer -p 8080
     // TODO: -String -d /usr/log
     // TODO: multi Options: -l -p 8080 -d /usr/logs
